@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import request from "superagent";
+import html2canvas from "html2canvas";
+
 import ImageEditor from "./ImageEditor";
 import Nike from "./Nike";
 
 import "./App.css";
+
+//Creating dynamic link that automatically click
+function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  link.click();
+  //after creating link you should delete dynamic link
+  //clearDynamicLink(link);
+}
 
 const CLOUDINARY_UPLOAD_PRESET = "fvsr5jia";
 const CLOUDINARY_UPLOAD_URL =
@@ -19,7 +31,7 @@ class App extends Component {
       topline: "",
       bottomline: "",
       withBgColor: false,
-      position: ""
+      position: "",
     };
   }
 
@@ -35,6 +47,17 @@ class App extends Component {
     this.setState({
       [evt.target.name]:
         evt.target.type === "checkbox" ? evt.target.checked : evt.target.value
+    });
+  };
+
+  handleDownload = () => {
+    let meme = document.querySelector("#edit-img");
+
+    html2canvas(meme, {logging: true,
+      useCORS : true
+    }).then(canvas => {
+      let myImage = canvas.toDataURL("image/png");
+      downloadURI("data:" + myImage, "yourImage.png");
     });
   };
 
@@ -67,7 +90,12 @@ class App extends Component {
 
         <div className="nav">
           <h1>Believe in Something Meme Generator</h1>
-          <p>Made By <a style={{color: "inherit"}} href="https://twitter.com/jeankvd">@jeankvd</a></p>
+          <p>
+            Made By{" "}
+            <a style={{ color: "inherit" }} href="https://twitter.com/jeankvd">
+              @jeankvd
+            </a>
+          </p>
         </div>
 
         <div className="FileUpload">
@@ -84,12 +112,14 @@ class App extends Component {
           {this.state.uploadedFileCloudinaryUrl === "" ? (
             <div className="edit-container">
               <div
+              crossOrigin="Anonymous"
                 id="edit-img"
-                style={{
-                  backgroundImage: `url('https://avatars0.githubusercontent.com/u/20847751?s=460&v=4')`
-                }}
+                // style={{
+                //   backgroundImage: `url(${'' + "?" + Math.random()})`
+                // }}
                 alt=""
               >
+              <img src={`${'http://res.cloudinary.com/dub9ykyuq/image/upload/v1536293773/20847751_wonwxg.jpg' + "?" + Math.random()}`} crossOrigin="anonymous" alt=""/>
                 <div className="edit-text" style={{}}>
                   <h2>
                     <span
@@ -116,7 +146,7 @@ class App extends Component {
                       background: this.state.withBgColor ? "black" : "none"
                     }}
                   >
-                    Just Do It <Nike />
+                    Just Do It 
                   </h2>
                 </div>
               </div>
@@ -152,7 +182,9 @@ class App extends Component {
                     value={this.state.withBgColor}
                   />
                 </div>
-                <a href="#">Download the Image</a>
+                <a href="#" onClick={this.handleDownload}>
+                  Download the Image
+                </a>
                 {/* <select
                   name="position"
                   id="position"
