@@ -26,3 +26,49 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Editable Image */
+
+#edit-img {
+  filter: grayscale(.8);
+  width: 400px;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.edit-text {
+  margin-top: 50%;
+}
+
+.edit-logo {
+  margin-top: auto;
+}
+
+.edit-text h2 {
+  background-color: black;
+  text-align: center;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.edit-logo h2 {
+  background-color: #000000;
+  padding: 5px 10px;
+}
+
+.edit-logo svg {
+  fill: white;
+  max-width: 50px;
+  max-height: 50px;
+}

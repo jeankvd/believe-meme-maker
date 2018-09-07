@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import request from "superagent";
-import logo from "./logo.svg";
+import ImageEditor from "./ImageEditor";
+import Nike from './Nike';
+
 import "./App.css";
 
 const CLOUDINARY_UPLOAD_PRESET = "fvsr5jia";
@@ -13,7 +15,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      uploadedFileCloudinaryUrl: ""
+      uploadedFileCloudinaryUrl: "",
+      topline: "",
+      bottomline: "",
     };
   }
 
@@ -47,6 +51,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800,900" rel="stylesheet"></link>
         <div className="FileUpload">
           <Dropzone
             multiple={false}
@@ -58,11 +63,33 @@ class App extends Component {
         </div>
 
         <div>
-          {this.state.uploadedFileCloudinaryUrl === "" ? null : (
+          {this.state.uploadedFileCloudinaryUrl === "" ? (
             <div>
-              <p>{this.state.uploadedFile.name}</p>
-              <img src={this.state.uploadedFileCloudinaryUrl} />
+            <div
+              id="edit-img"
+              style={{
+                backgroundImage: `url('https://avatars0.githubusercontent.com/u/20847751?s=460&v=4')`
+              }}
+              alt=""
+            >
+              <div className="edit-text">
+                <h2>{this.state.topline}</h2>
+                <h2>{this.state.bottomline}</h2>
+              </div>
+              <div className="edit-logo">
+                <h2>Just Do It <Nike/></h2>
+              </div>
             </div>
+            <div className="inputs">
+              <input type="text" name="topline" id="topline" value={this.state.topline}/>
+              <input type="text" name="bottomline" id="bottomline" value={this.state.bottomline}/>
+            </div>
+            </div>
+          ) : (
+            <ImageEditor
+              uploadedFile={this.state.uploadedFile}
+              uploadedFileCloudinaryUrl={this.state.uploadedFileCloudinaryUrl}
+            />
           )}
         </div>
       </div>
