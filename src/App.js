@@ -99,6 +99,9 @@ class App extends Component {
           <h2>Hey! Here are some pointers to use this app to its fullest</h2>
 
           <ul>
+            <li>
+              This is a Colin Kapernick Nike Meme Generator
+            </li>
             <li>Drop an image or click on the box to select an image, then use the text editor to add content to the image.</li>
             <li>I recommned using text shadow first and only using text background when the contrast is too low</li>
             <li>Images will resize to roughly the same size as the original ad</li>
