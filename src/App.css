@@ -34,12 +34,26 @@ body {
 /* navbar */
 
 .nav {
-  background-color: #397fda;
+  background-color: #2E4057;
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 50px;
+}
+
+.container {
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 /* DropZone Styles */
@@ -64,17 +78,16 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #397fda;
+  background-color: #2E4057;
   max-width: 80%;
   margin: 0 auto;
   padding: 40px;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 #edit-img {
   /* filter: grayscale(.8); */
-  width: 400px;
-  height: 500px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -83,6 +96,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 400px;
+  height: 500px;
+}
+
+.text-container {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
 }
 
 .edit-text {
@@ -98,17 +122,22 @@ body {
   text-align: center;
   margin-bottom: 0px;
   margin-top: 5px;
+  
 }
 
 .edit-text span {
   text-align: center;
   padding: 5px 10px;
+  font-family: serif;
+  font-weight: lighter;
 
   line-height: 2;
 }
 
 .edit-logo h2 {
   padding: 5px 10px;
+  font-family: serif;
+  font-weight: lighter;
 }
 
 .edit-logo svg {
@@ -122,7 +151,7 @@ body {
 .inputs {
   text-align: center;
   color: #fff;
-  background-color: grey;
+  background-color: #DA4167;
   padding: 80px 20px;
 }
 
@@ -142,11 +171,62 @@ body {
 }
 
 .inputs a {
-  background: #000;
+  background: #2E4057;
+  border: solid 1px white;
   color: #fff;
   padding: 20px 10px;
   border-radius: 5px;
   margin-top: 0px;
   display: inline-block;
   text-decoration: none;
+}
+
+
+@media (max-width: 950px) {
+.edit-container {
+  flex-direction: column-reverse;
+  
+}
+
+.edit-container > div {
+  margin-bottom: 20px;
+}
+
+}
+
+@media (max-width: 450px) {
+  #edit-img {
+    height: 400px;
+    width: 100%;
+  }
+
+  .edit-container {
+    align-items: initial;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .input input {
+    min-width: 100%;
+  }
+
+  .intro h2 {
+    text-align: center;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .intro {
+
+  }
+
 }

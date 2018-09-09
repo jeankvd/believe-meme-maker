@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import Dropzone from "react-dropzone";
 import request from "superagent";
-import html2canvas from "html2canvas";
-import logo from "./logo.png";
-
-import ImageEditor from "./ImageEditor";
-import Nike from "./Nike";
 import "./App.css";
+
+import {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  PinterestShareButton,
+  VKShareButton,
+  OKShareButton,
+  RedditShareButton,
+  TumblrShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  ViberShareButton,
+  WorkplaceShareButton,
+  EmailShareButton,
+} from 'react-share';
 
 import EditorContainer from "./EditorContainer";
 
@@ -18,20 +32,18 @@ const CLOUDINARY_UPLOAD_PRESET = "fvsr5jia";
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/dub9ykyuq/upload";
 
-/* 
-  var uri= "http://res.cloudinary.com/dub9ykyuq/image/upload/v1536293773/20847751_wonwxg.jpg";
-  var lastslashindex = uri.lastIndexOf('/');
-  var result= uri.substring(uri.lastIndexOf('/')).replace("/","/e_grayscale/");
-  console.log(result);
-  */
+/*
+"http://res.cloudinary.com/dub9ykyuq/image/upload/v1536293773/20847751_wonwxg.jpg";
+*/
+
+let shareUrl = "https://github.com/nygardk/react-share";
 class App extends Component {
   constructor(props) {
     super(props);
-    let uri = "http://res.cloudinary.com/dub9ykyuq/image/upload/v1536293773/20847751_wonwxg.jpg";
-    let result = uri.substring(0, uri.lastIndexOf('/')) + uri.substring(uri.lastIndexOf('/')).replace("/","/e_grayscale/")
+
     this.state = {
       uploadedFileCloudinaryUrl:
-        result
+        ""
     };
   }
 
@@ -54,9 +66,11 @@ class App extends Component {
         console.error(err);
       }
 
+
       if (response.body.secure_url !== "") {
+    let uri = response.body.secure_url;
         this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+          uploadedFileCloudinaryUrl: uri
         });
       }
     });
@@ -78,6 +92,22 @@ class App extends Component {
               @jeankvd
             </a>
           </p>
+        </div>
+
+      <div className="container">
+        <div className="intro">
+          <h2>Hey! Here are some pointers to use this app to its fullest</h2>
+
+          <ul>
+            <li>Drop an image or click on the box to select an image, then use the text editor to add content to the image.</li>
+            <li>I recommned using text shadow first and only using text background when the contrast is too low</li>
+            <li>Images will resize to roughly the same size as the original ad</li>
+            <li>Any Feedback is welcome at my twitter <a href="https://twitter.com/jeankvd">@jeankvd</a> </li>
+            <li>If you like this app, please share it 🤗😃</li>
+          </ul>
+        </div>
+
+          <TwitterShareButton url={shareUrl} />
         </div>
 
         <div className="FileUpload">

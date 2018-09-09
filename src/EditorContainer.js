@@ -20,6 +20,7 @@ class EditorContainer extends Component {
         topline: "",
         bottomline: "",
         withBgColor: false,
+        withBgShadow: false,
         position: ""
     };
   }
@@ -58,7 +59,8 @@ class EditorContainer extends Component {
             <h2>
               <span
                 style={{
-                    textShadow: this.state.withBgColor ? "3px 3px 12px black" : "none"
+                  textShadow: this.state.withBgShadow ? "3px 3px 12px black" : "none",
+                background: this.state.withBgColor ? "black" : "none"
                 }}
               >
                 {this.state.topline}
@@ -67,7 +69,8 @@ class EditorContainer extends Component {
             <h2>
               <span
                 style={{
-                  textShadow: this.state.withBgColor ? "3px 3px 12px black" : "none"
+                  textShadow: this.state.withBgShadow ? "3px 3px 12px black" : "none",
+                background: this.state.withBgColor ? "black" : "none"
                 }}
               >
                 {this.state.bottomline}
@@ -77,7 +80,8 @@ class EditorContainer extends Component {
           <div className="edit-logo">
             <h2
               style={{
-                textShadow: this.state.withBgColor ? "3px 3px 12px black" : "none"
+                textShadow: this.state.withBgShadow ? "3px 3px 12px black" : "none",
+                background: this.state.withBgColor ? "black" : "none"
               }}
             >
               Just Do It{" "}
@@ -115,7 +119,17 @@ class EditorContainer extends Component {
             />
           </div>
           <div className="input">
-            <label htmlFor="checkbox">Dark Text Background</label>
+            <label htmlFor="checkbox">Text Shadow</label>
+            <input
+              type="checkbox"
+              name="withBgShadow"
+              id="withBgShadow"
+              onChange={this.handleOnChange}
+              value={this.state.withBgShadow}
+            />
+          </div>
+          <div className="input">
+            <label htmlFor="checkbox">Black Text Background</label>
             <input
               type="checkbox"
               name="withBgColor"
