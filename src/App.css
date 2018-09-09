@@ -72,7 +72,7 @@ body {
 }
 
 #edit-img {
-  filter: grayscale(.8);
+  /* filter: grayscale(.8); */
   width: 400px;
   height: 500px;
   background-size: cover;
@@ -108,7 +108,6 @@ body {
 }
 
 .edit-logo h2 {
-  background-color: #000000;
   padding: 5px 10px;
 }
 
